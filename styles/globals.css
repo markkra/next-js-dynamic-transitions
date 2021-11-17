@@ -1,0 +1,32 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.slide-out {
+  transition: transform 1000ms;
+  transform: translateY(-110%);
+}
+
+.slide-in {
+  transition: transform 1000ms;
+  transform: translateY(0);
+}
+
+.btn {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
