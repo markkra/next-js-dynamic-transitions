@@ -1,62 +1,17 @@
 import Head from 'next/head';
+import { useState, useRef } from 'react';
 import styles from '../styles/Home.module.css';
 
-let toggle = false;
-
-const slideOutStyle =
-  'transition: transform 1000ms; transform: translateY(-110%)';
-const slideInStyle = 'transition: transform 1000ms; transform: translateY(0)';
-
-function onButtonClick(ev) {
-  // console.log(`${ev.target}`);
-  const classes = document.getElementById('the_main').classList;
-  classes.toggle(styles['slide-out']);
-  classes.toggle(styles['slide-in']);
-  // if (toggle) {
-  //   mane.classList.add(styles['slide-out']);
-  //   mane.classList.remove(styles['slide-in']);
-  // } else {
-  //   mane.classList.remove(styles['slide-out']);
-  //   mane.classList.add(styles['slide-in']);
-  // }
-  // mane.style = toggle ? slideOutStyle : slideInStyle;
-  toggle = !toggle;
-
-  // const foo = Array.from(document.styleSheets);
-  // foo.forEach((sheet, index) => {
-  //   console.log(sheet.title + ' at ' + index);
-  //   const rules = Array.from(sheet.cssRules);
-  //   rules.forEach((rule) => {
-  //     console.log(rule.cssText);
-  //     if (rule.cssText.includes('.slide-in')) {
-  //       console.log('Found the slide-in CSS rule!');
-  //       rule.cssText = rule.cssText.replace(
-  //         'translateY(0px)',
-  //         'translateY(50%)'
-  //       );
-  //       console.log(rule.cssText);
-  //     }
-  //   });
-  // });
-
-  // const allCSS = [...document.styleSheets]
-  //   .map((styleSheet) => {
-  //     try {
-  //       return [...styleSheet.cssRules].map((rule) => rule.cssText).join('\n');
-  //     } catch (e) {
-  //       console.log(
-  //         'Access to stylesheet %s is denied. Ignoring...',
-  //         styleSheet.href
-  //       );
-  //     }
-  //   })
-  //   .filter(Boolean)
-  //   .join('\n');
-
-  // console.log(allCSS);
-}
-
 export default function Home() {
+  const [toggle, setToggle] = useState(false);
+  const mainRef = useRef();
+
+  function onButtonClick(ev) {
+    const classes = mainRef.current.classList;
+    classes.toggle(styles['slide-out']);
+    classes.toggle(styles['slide-in']);
+  }
+
   return (
     <div className={`${styles['container']}`}>
       <button className="btn" type="button" onClick={onButtonClick}>
@@ -65,7 +20,11 @@ export default function Home() {
       <Head>
         <title>Create Next App</title>
       </Head>
-      <main id="the_main" className={`${styles.main} ${styles['slide-out']}`}>
+      <main
+        ref={mainRef}
+        sid="the_main"
+        className={`${styles.main} ${styles['slide-out']}`}
+      >
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>

@@ -126,7 +126,7 @@
 
 .slide-out {
   transition: transform 1000ms;
-  transform: translateY(-110%);
+  transform: translateY(110%);
 }
 
 @media (max-width: 600px) {
